@@ -7,3 +7,5 @@ build
 dist
 *.egg-info/
 .vscode/
+mmod_human_face_detector.dat
+mmod_human_face_detector.dat.bz2
