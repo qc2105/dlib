@@ -8,10 +8,14 @@
 #error "DLIB_USE_BLAS should be defined if you want to use the BLAS bindings"
 #endif
 
+
+
 #include "matrix_assign.h"
 #include "matrix_conj_trans.h"
 #include "cblas_constants.h"
 #include <stdint.h>
+
+#include "openblas_config.h"
 
 //#include <iostream>
 //using namespace std;
@@ -356,7 +360,7 @@ namespace dlib
         {
             DLIB_TEST_BLAS_BINDING_DOT;
             std::complex<float> result;
-            cblas_cdotu_sub(N, (float*)X, incX, (float*)Y, incY, (float*)&result);
+            cblas_cdotu_sub(N, (float*)X, incX, (float*)Y, incY, reinterpret_cast<openblas_complex_float*>(&result));
             return result;
         }
 
@@ -365,7 +369,7 @@ namespace dlib
         {
             DLIB_TEST_BLAS_BINDING_DOT;
             std::complex<double> result;
-            cblas_zdotu_sub(N, (double*)X, incX, (double*)Y, incY, (double*)&result);
+            cblas_zdotu_sub(N, (double*)X, incX, (double*)Y, incY, reinterpret_cast<openblas_complex_double*>(&result));
             return result;
         }
 
@@ -376,7 +380,7 @@ namespace dlib
         {
             DLIB_TEST_BLAS_BINDING_DOT;
             std::complex<float> result;
-            cblas_cdotc_sub(N, (float*)X, incX, (float*)Y, incY, (float*)&result);
+            cblas_cdotc_sub(N, (float*)X, incX, (float*)Y, incY, reinterpret_cast<openblas_complex_float*>(&result));
             return result;
         }
 
@@ -385,7 +389,7 @@ namespace dlib
         {
             DLIB_TEST_BLAS_BINDING_DOT;
             std::complex<double> result;
-            cblas_zdotc_sub(N, (double*)X, incX, (double*)Y, incY, (double*)&result);
+            cblas_zdotc_sub(N, (double*)X, incX, (double*)Y, incY, reinterpret_cast<openblas_complex_double*>(&result));
             return result;
         }
 
